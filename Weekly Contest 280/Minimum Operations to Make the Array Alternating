@@ -1,0 +1,50 @@
+'''
+https://leetcode.com/contest/weekly-contest-280/problems/minimum-operations-to-make-the-array-alternating/
+'''
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        if len(nums)==1:
+            return 0
+        freqeven={};freqodd={};cnte=0;cnto=0
+        for i in range(len(nums)):
+            if i%2==0:
+                cnte+=1
+                if nums[i] in freqeven:
+                    freqeven[nums[i]]+=1
+                else:
+                    freqeven[nums[i]]=1
+            else:
+                cnto+=1
+                if nums[i] in freqodd:
+                    freqodd[nums[i]]+=1
+                else:
+                    freqodd[nums[i]]=1
+                
+        arreven=[];arrodd=[]
+        
+        for i in freqeven:
+            arreven.append([freqeven[i],i])
+        for i in freqodd:
+            arrodd.append([freqodd[i],i])
+            
+        arreven.sort(reverse=True);arrodd.sort(reverse=True)
+        freqevenmax=arreven[0][0];freqoddmax=arrodd[0][0]
+        
+       
+        if len(arreven)>1:
+            secondfreqevenmax=arreven[1][0]
+        else:
+            secondfreqevenmax=0
+            
+        if len(arrodd)>1:
+            secondfreqoddmax=arrodd[1][0]
+        else:
+            secondfreqoddmax=0
+                
+        if arreven[0][1]!=arrodd[0][1]:
+            ans=cnte-freqevenmax + cnto-freqoddmax
+            return ans
+        else:
+            anseven=cnte-freqevenmax + cnto-secondfreqoddmax
+            ansodd=cnte-secondfreqevenmax + cnto-freqoddmax
+            return min(anseven,ansodd)
