@@ -1,0 +1,11 @@
+'''
+https://leetcode.com/contest/weekly-contest-280/problems/removing-minimum-number-of-magic-beans/
+'''
+class Solution:
+    def minimumRemoval(self, nums: List[int]) -> int:
+        nums.sort();cnt=0;ans=10**12
+        x=sum(nums);n=len(nums)
+        for i in range(len(nums)):
+            cnt=x-(n-i)*nums[i]
+            ans=min(ans,cnt)
+        return ans
