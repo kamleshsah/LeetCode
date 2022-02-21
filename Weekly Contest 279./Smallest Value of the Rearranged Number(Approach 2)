@@ -1,0 +1,20 @@
+'''
+https://leetcode.com/contest/weekly-contest-279/problems/smallest-value-of-the-rearranged-number/
+'''
+class Solution:
+    def smallestNumber(self, nums: int) -> int:
+        if nums==0:
+            return 0
+        
+        if nums<0:
+            l=list(str(-nums))
+            l.sort(reverse=True)
+            ans=''.join(l)
+            return int('-'+ans)
+        else:
+            l=list(str(nums))
+            l.sort();i=0
+            while i<len(l) and l[i]=='0':
+                i+=1
+            l=''.join(l)
+            return (int(l[i]+l[:i]+l[i+1:]))
