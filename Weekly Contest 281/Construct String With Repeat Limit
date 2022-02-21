@@ -1,0 +1,32 @@
+'''
+https://leetcode.com/contest/weekly-contest-281/problems/construct-string-with-repeat-limit/
+'''
+
+class Solution:
+    def repeatLimitedString(self, s: str, k: int) -> str:
+        cnt=[0]*26
+        for i in s:
+            cnt[ord(i)-ord('a')]+=1   
+        last=-1
+        ans=[]
+        while True:
+            seen=False
+            change=False
+            for i in range(25,-1,-1):
+                if i!=last and cnt[i]>0:
+                    change=True
+                    if not seen:
+                        ans.extend([i]*min(cnt[i],k))
+                        cnt[i]-=min(k,cnt[i])
+                        last=i
+                    else:
+                        ans.append(i)
+                        cnt[i]-=1
+                        last=i
+                    break
+                elif cnt[i]>0:
+                    seen=True
+            if not change:
+                break
+        return "".join([chr(i+ord('a'))for i in ans])
+            
