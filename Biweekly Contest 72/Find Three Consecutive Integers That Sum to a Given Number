@@ -1,0 +1,13 @@
+'''
+https://leetcode.com/contest/biweekly-contest-72/problems/find-three-consecutive-integers-that-sum-to-a-given-number/
+'''
+
+class Solution:
+    def sumOfThree(self, n: int) -> List[int]:
+        ans=[]
+        x=(n-3)/3
+        print(x)
+        if x==int(x):
+            x=int(x)
+            ans=[x,x+1,x+2]
+        return ans
