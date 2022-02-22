@@ -1,0 +1,17 @@
+'''
+https://leetcode.com/contest/biweekly-contest-72/problems/maximum-split-of-positive-even-integers/
+'''
+
+class Solution:
+    def maximumEvenSplit(self, num: int) -> List[int]:
+        ans=[]
+        if num%2!=0:
+            return ans
+        ans=[]
+        i=1
+        while num>=i*2:
+            ans.append(i*2)
+            num-=i*2
+            i+=1
+        ans[-1]+=num
+        return ans
