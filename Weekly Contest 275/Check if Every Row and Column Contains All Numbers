@@ -1,0 +1,25 @@
+'''
+https://leetcode.com/contest/weekly-contest-275/problems/check-if-every-row-and-column-contains-all-numbers/
+'''
+
+class Solution:
+    def checkValid(self, matrix: List[List[int]]) -> bool:
+            
+            n=len(matrix)
+            cnt=[int(i) for i in range(1,n+1)]
+    
+            for i in range(n):
+                arr=set()
+                for j in range(n):
+                    arr.add(matrix[i][j])
+                if len(arr)!=len(cnt):
+                    return False
+                
+                arr=set()
+                for j in range(n):
+                    arr.add(matrix[j][i])
+                if len(arr)!=len(cnt):
+                    return False
+                i+=1
+                
+            return True
