@@ -1,0 +1,20 @@
+'''
+https://leetcode.com/contest/weekly-contest-282/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/
+'''
+
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        x=abs(len(s)-len(t))
+        st=[0]*26
+        pt=[0]*26
+        for i in s:
+            st[ord(i)-ord('a')]+=1
+        for i in t:
+            pt[ord(i)-ord('a')]+=1
+        
+        ans=0
+
+        for i in range(len(st)):
+            x=abs(st[i]-pt[i])
+            ans+=x
+        return ans
