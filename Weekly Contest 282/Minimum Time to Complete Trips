@@ -1,0 +1,25 @@
+'''
+https://leetcode.com/contest/weekly-contest-282/problems/minimum-time-to-complete-trips/
+'''
+
+class Solution:
+    
+    def minimumTime(self, time: List[int], totalTrips: int) -> int:
+        
+        def find_ans(mid):
+            cnt=0
+            for i in time:
+                cnt+=(mid//i)
+            return cnt
+        
+        low=0;high=10**14
+        ans=high
+        while low<=high:
+            mid=(low+high)>>1
+            if find_ans(mid)>=totalTrips:
+                ans=mid
+                high=mid-1
+            else:
+                low=mid+1
+        
+        return ans
