@@ -1,0 +1,51 @@
+'''
+https://leetcode.com/contest/weekly-contest-283/problems/append-k-integers-with-minimal-sum/
+
+Note : limited to memory and time contrainst i.e you are not able to use extra space plus need to solve in O(nlogn) only.
+'''
+class Solution:
+
+    def minimalKSum(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        sum_=0
+        
+        def solve(n,a):
+            val=n/2 * (2*a + (n-1))
+            return int(val)
+        
+        i=0   
+        while k>0:
+            if i==0:
+                n=nums[i]-1
+                if k<=n:
+                    n=k
+                    k=0
+                else:
+                    k-=n
+                
+                sum_+=solve(n,1)
+
+            elif i>=len(nums):
+                a=nums[-1]+1
+                n=k
+                k=0
+                sum_+=solve(n,a)
+            
+            else:
+                if nums[i-1]+1!=nums[i] and nums[i-1]!=nums[i]:
+                    a=nums[i-1]+1
+                    n=nums[i]-nums[i-1]-1
+                    if k>=n:
+                        k-=n
+                        sum_+=solve(n,a)
+                    else:
+                        n=k
+                        k=0
+                        sum_+=solve(n,a)
+            i+=1
+                        
+        return sum_
+            
+                
+            
+            
