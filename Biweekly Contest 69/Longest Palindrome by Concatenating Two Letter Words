@@ -1,0 +1,26 @@
+'''
+https://leetcode.com/contest/biweekly-contest-69/problems/longest-palindrome-by-concatenating-two-letter-words/
+'''
+
+class Solution:
+    def longestPalindrome(self, words: List[str]) -> int:
+        d={};ans=0;flag=True
+        for i in range(len(words)):
+            if words[i] in d:
+                d[words[i]]+=1
+            else:
+                d[words[i]]=1
+        
+        for i in words:
+            if d[i]==0:
+                continue
+            d[i]-=1
+            invert=i[::-1]
+            if invert in d and d[invert]>0:
+                ans+=4
+                d[invert]-=1
+                
+            elif flag==True and i==invert:
+                ans+=2
+                flag=False
+        return ans
