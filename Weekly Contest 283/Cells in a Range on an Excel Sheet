@@ -1,0 +1,16 @@
+'''
+https://leetcode.com/contest/weekly-contest-283/problems/cells-in-a-range-on-an-excel-sheet/
+'''
+
+class Solution:
+
+    def cellsInRange(self, s: str) -> List[str]:
+        ans=[]
+        initial=ord(s[0])
+        final=ord(s[3])
+        while initial<=final:
+            for i in range(int(s[1]),int(s[4])+1):
+                x=chr(initial)+str(i)
+                ans.append(x)
+            initial+=1
+        return ans
