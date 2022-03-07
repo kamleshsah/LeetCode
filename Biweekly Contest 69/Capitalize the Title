@@ -1,0 +1,15 @@
+'''
+https://leetcode.com/contest/biweekly-contest-69/problems/capitalize-the-title/
+'''
+class Solution:
+    def capitalizeTitle(self, title: str) -> str:
+        title=title.split(' ');s=''
+        for i in range(len(title)):
+            if len(title[i])>2:
+                s+=title[i].title()
+            else:
+                s+=title[i].lower()
+            if i!=len(title)-1:
+                s+=' '
+                
+        return s
