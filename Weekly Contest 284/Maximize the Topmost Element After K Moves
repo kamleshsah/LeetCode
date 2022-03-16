@@ -1,0 +1,28 @@
+'''
+https://leetcode.com/contest/weekly-contest-284/problems/maximize-the-topmost-element-after-k-moves/
+'''
+
+class Solution:
+    def maximumTop(self, nums: List[int], k: int) -> int:
+        arr=[]
+        if k==0:
+            return nums[0]
+        if len(nums)==1 and k%2!=0:
+            return -1
+        if len(nums)==1 and k%2==0:
+            return nums[0]
+        if k>len(nums):
+            return max(nums)
+        if k==1:
+            return nums[1]
+        while k>1:
+            arr.append(nums[0])
+            nums.remove(nums[0])
+            k-=1
+        if len(nums)>1 and max(arr)>nums[1]:
+            return max(arr)
+        elif len(nums)==1:
+            return max(arr)
+        elif len(nums)>1 and max(arr)<nums[1]:
+            return nums[1] 
+        return max(arr)
