@@ -1,0 +1,28 @@
+'''
+https://leetcode.com/contest/weekly-contest-285/problems/count-hills-and-valleys-in-an-array/
+'''
+
+class Solution:
+    def countHillValley(self, nums: List[int]) -> int:
+        k=2
+        j=k-1
+        i=j-1
+        ans=0
+        while k<len(nums):
+            if nums[j]<nums[i] and nums[j]<nums[k]:
+                ans+=1
+                k+=1;j=k-1;i=j-1
+            elif nums[j]>nums[i] and nums[j]>nums[k]:
+                ans+=1
+                k+=1;j=k-1;i=j-1
+            elif nums[j]==nums[k]:
+                while k<len(nums) and nums[j]==nums[k]:
+                    k+=1
+            else:
+                k+=1;j=k-1;i=j-1
+        return ans
+                
+                
+            
+                        
+                
