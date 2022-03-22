@@ -1,0 +1,35 @@
+'''
+https://leetcode.com/contest/weekly-contest-285/problems/count-collisions-on-a-road/
+'''
+
+class Solution:
+    # RLRSLL
+    def countCollisions(self, d: str) -> int:
+        right=0
+        left=0
+        i=0
+        ans=0
+        while True:
+            if len(d)==0:
+                break
+            if d[i]!="L":
+                break
+            d=d[i+1:]
+       
+        j=len(d)-1
+        while True:
+            if len(d)==0:
+                break
+            if d[j]!="R":
+                break
+            d=d[:j]
+            j-=1
+        
+        if len(d)==0:
+            return 0
+        else:
+            x=d.count('R')
+            y=d.count('L')
+            return x+y
+    
+    
