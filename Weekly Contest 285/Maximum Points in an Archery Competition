@@ -4,15 +4,14 @@ https://leetcode.com/contest/weekly-contest-285/problems/maximum-points-in-an-ar
 '''
 class Solution:
     def maximumBobPoints(self, numArrows: int, aliceArrows: List[int]) -> List[int]:
-        
-        
+
         def solve(numArrows,carry,ans,ind,dp):
             if numArrows<1 or ind==-1:
                 ans[carry]=dp.copy()
                 return
             
-            dp[ind]=aliceArrows[ind]+1
             if numArrows>aliceArrows[ind]:
+                dp[ind]=aliceArrows[ind]+1
                 solve(numArrows-aliceArrows[ind]-1,carry+ind,ans,ind-1,dp)
             dp[ind]=0
             solve(numArrows,carry,ans,ind-1,dp)
