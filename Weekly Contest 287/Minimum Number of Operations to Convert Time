@@ -1,0 +1,29 @@
+'''
+https://leetcode.com/contest/weekly-contest-287/problems/minimum-number-of-operations-to-convert-time/
+'''
+
+class Solution:
+    def convertTime(self, current: str, correct: str) -> int:
+        x=int(current[:2])*60+int(current[3:])
+        y=int(correct[:2])*60+int(correct[3:])
+        ans=0
+        if x==y:
+            return ans
+        if x<y:
+            while x!=y:
+                diff=y-x
+                if diff>=60:
+                    x+=60
+                    ans+=1
+                elif diff<60 and diff>=15:
+                    ans+=1
+                    x+=15
+                elif diff<15 and diff>=5:
+                    ans+=1
+                    x+=5
+                else:
+                    ans+=1
+                    x+=1
+            return ans
+  
+            
